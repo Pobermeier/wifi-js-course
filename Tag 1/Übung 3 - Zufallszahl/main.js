@@ -8,27 +8,21 @@ class NumberGuesserGame {
   constructor(uiRef = null) {
     this.state = this.initialState;
     this.ui = uiRef;
-    console.log('Game initialized!', this.state);
   }
 
   checkNumber(numberToCheck) {
     if (this.state.gameIsRunning && this.state.numberToGuess) {
       if (numberToCheck === this.state.numberToGuess) {
-        console.log(this.state);
-        console.log(
-          'You guessed right! Number of guesses it took you: ' +
-            this.state.numberOfGuesses,
-        );
         this.ui &&
           this.ui.setAlert(
             'You guessed right! Number of guesses it took you: ' +
-              this.state.numberOfGuesses,
+              this.state.numberOfGuesses +
+              '. Restarting game!',
             'success',
           );
         this.resetGame();
       } else {
         this.incrementGuesses();
-        console.log('Wrong number! Guess again!', this.state);
         this.ui && this.ui.setAlert('Wrong number! Guess again!', 'error');
       }
     }
@@ -41,7 +35,6 @@ class NumberGuesserGame {
         gameIsRunning: true,
         numberToGuess: this.generateNumber(),
       };
-      console.log('Game has started', this.state);
       this.ui &&
         this.ui.setAlert(
           'Game has started! Guess a number between 1 and 10.',
@@ -65,42 +58,35 @@ class NumberGuesserGame {
   }
 
   resetGame() {
-    this.state = this.initialState;
     setTimeout(() => {
-      this.ui && this.ui.resetUi();
-      this.startGame();
+      location.reload();
     }, 2000);
   }
 }
 
 class UserInterface {
-  constructor(form, numberInput, output, numberOfGuesses) {
-    this.form = form;
+  constructor(numberInput, output, numberOfGuesses, submitButton) {
     this.numberInput = numberInput;
     this.output = output;
     this.numberOfGuesses = numberOfGuesses;
+    this.submitButton = submitButton;
   }
 
   setAlert(text, cssClass) {
     this.clearAlert();
+    this.submitButton.disabled = true;
     this.output.classList.remove('hidden');
     this.output.classList.add(cssClass);
     this.output.innerText = text;
 
     setTimeout(() => {
+      this.submitButton.disabled = false;
       this.clearAlert();
     }, 2000);
   }
 
   setNumberOfGuesses(numberOfGuesses) {
     this.numberOfGuesses.innerText = numberOfGuesses.toString();
-  }
-
-  resetUi() {
-    this.setNumberOfGuesses(0);
-    setTimeout(() => {
-      this.clearAlert();
-    }, 2000);
   }
 
   clearAlert() {
@@ -116,8 +102,14 @@ class UserInterface {
   const numberInput = document.getElementById('guess-number');
   const output = document.getElementById('output');
   const numberOfGuesses = document.getElementById('number-of-guesses');
+  const submitButton = document.querySelector('#game-form button');
 
-  const ui = new UserInterface(form, numberInput, output, numberOfGuesses);
+  const ui = new UserInterface(
+    numberInput,
+    output,
+    numberOfGuesses,
+    submitButton,
+  );
   const game = new NumberGuesserGame(ui);
 
   game.startGame();
