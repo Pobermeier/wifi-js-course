@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slot Machine</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Slot Machine</h1>
+
+    <div id="slot-machine-wrapper" class="slot-machine-wrapper">
+      <div id="slot-machine-reels" class="slot-machine-reels">
+        <div class="reel" id="reel1"></div>
+        <div class="reel" id="reel2"></div>
+        <div class="reel" id="reel3"></div>
+        <div class="reel" id="reel4"></div>
+      </div>
+      <div id="slot-machine-controls" class="slot-machine-controls">
+        <label for="stake-value" style="display: inline-block">Your Coins</label>
+        <input type="number" name="stake-value" value="100" disabled style="width: 60px;">
+        <button id="spin-btn" class="button-primary">Spin</button>
+      </div>
+      <div id="slot-machine-audio">
+        <audio src="./assets/click.mp3" id="click-sound"></audio>
+        <audio src="./assets/wheel.mp3" id="spin-sound"></audio>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </div>
+</body>
+
+</html>

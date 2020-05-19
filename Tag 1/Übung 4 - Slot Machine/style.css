@@ -1,0 +1,84 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.container {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: grey;
+  border-color: grey;
+}
+
+.slot-machine-wrapper {
+  background-color: grey;
+  margin: 0 auto;
+  max-width: 380px;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.slot-machine-reels {
+  padding: 2rem;
+  background-color: black;
+  border-radius: 5px;
+  width: calc(68px * 5);
+  margin: 2rem auto;
+}
+
+.slot-machine-reels .reel {
+  background-color: whitesmoke;
+  display: inline-block;
+  width: 68px;
+  height: 66px;
+}
+
+.slot-machine-reels .reel {
+  background-image: url(./assets/reelSpin-480x400.png);
+  border-radius: 5px;
+}
+
+.slot-machine-reels #reel1 {
+  background-position-x: 0px;
+}
+
+.slot-machine-reels #reel2 {
+  background-position-x: -136px;
+}
+
+.slot-machine-reels #reel3 {
+  background-position-x: 68px;
+}
+
+.slot-machine-reels #reel4 {
+  background-image: url(./assets/reelSpin-480x400.png);
+}
+
+.slot-machine-controls {
+  text-align: center;
+}
+
+.slot-machine-controls input {
+  height: 30px;
+}
+
+.slot-machine-controls input,
+.slot-machine-controls button {
+  margin: 0 1rem;
+}
+
+audio {
+  display: none;
+}
