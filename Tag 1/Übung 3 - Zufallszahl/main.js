@@ -116,7 +116,6 @@ class UserInterface {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(numberInput.value);
     game.checkNumber(+numberInput.value);
     numberInput.value = '';
     numberInput.focus();
