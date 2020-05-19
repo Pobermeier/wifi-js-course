@@ -16,7 +16,7 @@ class NumberGuesserGame {
         this.ui &&
           this.ui.setAlert(
             'You guessed right! Number of guesses it took you: ' +
-              this.state.numberOfGuesses +
+              ++this.state.numberOfGuesses +
               '. Restarting game!',
             'success',
           );
@@ -58,7 +58,10 @@ class NumberGuesserGame {
   }
 
   resetGame() {
+    this.state = this.initialState;
     setTimeout(() => {
+      this.ui.resetUi();
+      this.startGame();
       location.reload();
     }, 2000);
   }
@@ -81,6 +84,13 @@ class UserInterface {
 
     setTimeout(() => {
       this.submitButton.disabled = false;
+      this.clearAlert();
+    }, 2000);
+  }
+
+  resetUi() {
+    this.setNumberOfGuesses(0);
+    setTimeout(() => {
       this.clearAlert();
     }, 2000);
   }
