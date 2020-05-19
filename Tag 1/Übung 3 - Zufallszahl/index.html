@@ -15,8 +15,9 @@
     <p>Guess the correct number by typing in a number between 1-10 in the form field below.</p>
     <div id="output" class="hidden"></div>
     <form id="game-form">
-      <input type="number" min="1" max="10" step="1" required>
+      <input type="number" min="1" max="10" step="1" id="guess-number" required>
       <button class="button-primary" type="submit">Guess Number</button>
+      <p>Number of Guesses: <span id="number-of-guesses">0</span></p>
     </form>
   </div>
 
