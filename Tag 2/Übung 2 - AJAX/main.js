@@ -28,6 +28,6 @@
       })
     ).text();
 
-    resultText.value = result;
+    resultText.value = Number(result).toFixed(2);
   });
 })();
