@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotto App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <style>
+    .container {
+      text-align: center;
+    }
+
+    #output span {
+      display: inline-block;
+      font-size: 3rem;
+      width: 50px;
+      height: 50px;
+      background-color: #33C3F0;
+      text-align: center;
+      color: #fff;
+      border-radius: 50%;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Lotto - 6 of 45</h1>
+    <h2>Click the <span style="color: #33C3F0;">button</span> to start the draw!</h2>
+    <br>
+    <div id="output">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <br><br>
+    <button id="getNumbersBtn" class="button button-primary">Draw Numbers</button>
+    <script src="./client.js"></script>
+  </div>
+
+</body>
+
+</html>
