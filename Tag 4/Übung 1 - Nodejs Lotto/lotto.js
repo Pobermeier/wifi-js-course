@@ -3,11 +3,9 @@ function lottoGen(numbersToDraw, totalNumbers) {
   let random;
 
   for (let i = 0; i < numbersToDraw; i++) {
-    random = getRandom(1, totalNumbers);
-
-    while (numbers.indexOf(random) !== -1) {
+    do {
       random = getRandom(1, totalNumbers);
-    }
+    } while (numbers.indexOf(random) !== -1);
 
     numbers.push(random);
   }
