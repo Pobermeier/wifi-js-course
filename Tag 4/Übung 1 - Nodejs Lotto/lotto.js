@@ -1,3 +1,8 @@
+/**
+ * Draws a specified amount of random numbers from a specified pool of numbers. Basically this is a Lotto-function. Returns an array with the random numbers that have been drawn from the pool of available random numbers.
+ * @param {Number} numbersToDraw How many numbers should be drawn from totalNumbers sample
+ * @param {Number} totalNumbers The sample of total numbers that random numbers can be drawn from
+ */
 function lottoGen(numbersToDraw, totalNumbers) {
   const numbers = [];
   let random;
