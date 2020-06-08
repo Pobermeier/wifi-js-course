@@ -7,6 +7,7 @@ const users = require('./users');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static('static'));
 
 app.get('/generatePassword', (req, res) => {
   res.status(200);
@@ -29,8 +30,6 @@ app.post('/addUser', (req, res) => {
   console.log(users);
   res.status(200).json({ status: '200 Success' });
 });
-
-app.use(express.static('static'));
 
 app.listen(5001, () => {
   console.log('Server started on port 5001');
