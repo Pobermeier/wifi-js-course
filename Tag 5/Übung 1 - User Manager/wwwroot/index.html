@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+
+  <title>User Manager</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">User Manager</a>
+    </div>
+  </nav>
+  <main>
+    <div class="container px-1" id="alerts"></div>
+    <div class="container pt-3">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#adduser" role="tab" aria-controls="adduser"
+            aria-selected="false">Add User</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h2 class="pt-3">List Of Users</h2>
+          <p>Here you can find a list of all users currently stored in the database. To add a new user switch to
+            the "Add User"-tab.</p>
+          <br>
+          <div id="users-list"></div>
+        </div>
+        <div class="tab-pane fade" id="adduser" role="tabpanel" aria-labelledby="adduser-tab">
+          <h2 class="pt-3">Add User</h2>
+          <p>Add a new user to the database by filling out the form below.</p>
+          <form id="add-user-form">
+            <div class="form-group">
+              <label for="user-name">Username</label>
+              <input type="text" class="form-control" id="user-name" aria-describedby="userName" required
+                autocomplete="nickname">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" aria-describedby="email" required
+                autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" aria-describedby="password" required
+                autocomplete="new-password">
+              <a href="#" style="display: block; text-align: right;" id="generate-password">Auto-generate secure
+                password</a>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <script src="./pwstrength-bootstrap.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./client.js"></script>
+  <script>
+    $('#password').pwstrength();
+  </script>
+</body>
+
+</html>

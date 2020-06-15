@@ -1,0 +1,41 @@
+/* #alerts {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+} */
+
+.navbar {
+  margin-bottom: 1rem;
+}
+
+.navbar.navbar-dark.bg-dark {
+  background-color: #3186a0 !important;
+}
+
+table .thead-dark th {
+  background-color: #408ae6 !important;
+  border-color: #408ae6 !important;
+}
+
+table td button {
+  margin: 0.5rem;
+  width: 50px;
+}
+
+table td button svg {
+  pointer-events: none;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+#birthday-list {
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
+}
