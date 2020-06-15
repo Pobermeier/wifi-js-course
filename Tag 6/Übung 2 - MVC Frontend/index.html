@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrapper">
+        Neuer User: <input type="text" id="username">
+        <button id="btn_add">Hinzufügen</button>
+        <ul id="userliste"></ul>        
+    </div>
+
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="events.js"></script>
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+
+    <script>
+        var m = new Model(), v = new View(m), c = new Controller(m,v);
+    </script>
+
+
+</body>
+</html>
