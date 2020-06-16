@@ -1,0 +1,16 @@
+{
+  "name": "Todo-List",
+  "version": "1.0.0",
+  "description": "Electron Knockout Todo List",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Patrick Obermeier",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^9.0.4",
+    "knockout": "^3.5.1"
+  }
+}
