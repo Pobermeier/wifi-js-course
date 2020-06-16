@@ -1,4 +1,6 @@
 const { app, BrowserWindow, Menu, shell, ipcMain } = require('electron');
+const puppeteer = require('puppeteer');
+
 let window;
 
 let menu = [
@@ -55,25 +57,23 @@ app.on('window-all-closed', () => {
 });
 //+ MacOS
 
-const puppeteer = require('puppeteer');
-let newsItems;
+ipcMain.on('newsItems', async (event) => {
+  let newsItems;
 
-const asyncFn = async () => {
-  const url = 'https://orf.at/';
+  const asyncFn = async () => {
+    const url = 'https://orf.at/';
 
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(url);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
 
-  newsItems = await page.$$eval('h3', (stories) =>
-    stories.map((headline) => headline.innerText),
-  );
+    newsItems = await page.$$eval('h3', (stories) =>
+      stories.map((headline) => headline.innerText),
+    );
 
-  console.log(newsItems);
-};
+    console.log(newsItems);
+  };
 
-asyncFn();
-
-ipcMain.on('newsItems', (event) => {
+  await asyncFn();
   event.reply('newsItems', newsItems);
 });
