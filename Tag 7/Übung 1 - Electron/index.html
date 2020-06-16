@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News</title>
+  <style>
+    header h1 {
+      text-align: center;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100vw;
+      justify-content: space-between;
+    }
+
+    aside {
+      background-color: aquamarine;
+      min-width: 25vw;
+      padding: 0 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Amazing News Site</h1>
+  </header>
+  <main>
+    <h1>Newsfeed</h1>
+    <p>The latest News:</p>
+    <ul id="news-list"></ul>
+  </main>
+
+  <script>
+    const {
+      ipcRenderer
+    } = require('electron');
+
+    ipcRenderer.send('newsItems');
+
+    const newsList = document.querySelector("#news-list")
+
+    ipcRenderer.on('newsItems', (event, a) => {
+      a.forEach(newsItem => {
+        newsList.innerHTML += `
+         <li>${newsItem}</li>
+        `
+      })
+    })
+  </script>
+</body>
+
+</html>
