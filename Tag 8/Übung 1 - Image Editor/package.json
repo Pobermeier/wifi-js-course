@@ -1,0 +1,17 @@
+{
+  "name": "imageeditor",
+  "version": "1.0.0",
+  "description": "Image Editor",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "author": "Vincenz",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^9.0.4"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
