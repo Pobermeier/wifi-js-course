@@ -1,50 +1,115 @@
-const { ipcRenderer } = require( 'electron' );
+const { ipcRenderer } = require('electron');
 
-$( '#menu' ).dialog();
+$('#menu').dialog();
 
-$( '#openfile' ).on( 'click', function(e) {
-    e.preventDefault();
-    ipcRenderer.send( 'openfile' );
-})
+let activeContext = null;
+let img = null;
 
-$( '#savefile' ).on( 'click', function(e) {
-    e.preventDefault();
-    ipcRenderer.send( 'savefile', $('canvas').get(0).toDataURL()  );
-})
+$('#openfile').on('click', function (e) {
+  e.preventDefault();
+  ipcRenderer.send('openfile');
+});
 
+$('#savefile').on('click', function (e) {
+  e.preventDefault();
+  ipcRenderer.send('savefile', $('canvas').get(0).toDataURL());
+});
 
-ipcRenderer.on( 'filestoopen', (event,files) => {
-    console.log( 'file?', files[0] );
+$('#flip-horizontal').on('click', function (e) {
+  e.preventDefault();
 
-    // lade Image
-    var img = new Image();
-    img.src = files[0];
-    img.onload = function() {
+  if (activeContext && img) {
+    drawImage(activeContext, img, 0, 0, img.width, img.height, 0, true);
+  }
+});
 
-        var canvas =  $('<canvas>')
-            .attr( {
-                width: img.width,
-                height: img.height
-            }  )  
-            .css({width:'100%',height:'auto'});
+$('#flip-vertical').on('click', function (e) {
+  e.preventDefault();
 
-        $( '<div>' )
-        .append( 
-            canvas
-        )
-        .appendTo( 'body' )
-        .dialog({
-            width:500
-        });
-    
-        var ctx = canvas.get(0).getContext('2d');
+  if (activeContext && img) {
+    drawImage(activeContext, img, 0, 0, img.width, img.height, 0, false, true);
+  }
+});
 
-        ctx.scale( -1,1 );
-        ctx.drawImage( img, -img.width , 0);
-        ctx.scale( -1,1 );    
-    
-    }
+$('#rotate-left').on('click', function (e) {
+  e.preventDefault();
 
+  if (activeContext && img) {
+    drawImage(activeContext, img, 0, 0, img.width, img.height, 90);
+  }
+});
 
-  
-})
+$('#rotate-right').on('click', function (e) {
+  e.preventDefault();
+  if (activeContext && img) {
+    drawImage(activeContext, img, 0, 0, img.width, img.height, -90);
+  }
+});
+
+ipcRenderer.on('filestoopen', (event, files) => {
+  console.log('file?', files[0]);
+
+  // lade Image
+  img = new Image();
+  img.src = files[0];
+  img.onload = function () {
+    const canvas = $('<canvas>')
+      .attr({
+        width: img.width,
+        height: img.height,
+      })
+      .css({
+        width: '100%',
+        height: 'auto',
+        maxWidth: img.width,
+        maxHeight: img.height,
+      });
+
+    $('<div>')
+      .append(canvas)
+      .appendTo('body')
+      .dialog({
+        width: img.width,
+        height: img.height + 100,
+      });
+
+    const ctx = canvas.get(0).getContext('2d');
+
+    drawImage(ctx, img, 0, 0);
+
+    activeContext = ctx;
+  };
+});
+
+function drawImage(context, img, x, y, width, height, deg, flip, flop, center) {
+  context.save();
+
+  if (typeof width === 'undefined') width = img.width;
+  if (typeof height === 'undefined') height = img.height;
+  if (typeof center === 'undefined') center = false;
+
+  // Set rotation point to center of image, instead of top/left
+  if (center) {
+    x -= width / 2;
+    y -= height / 2;
+  }
+
+  // Set the origin to the center of the image
+  context.translate(x + width / 2, y + height / 2);
+
+  // Rotate the canvas around the origin
+  var rad = 2 * Math.PI - (deg * Math.PI) / 180;
+  context.rotate(rad);
+
+  // Flip/flop the canvas
+  if (flip) flipScale = -1;
+  else flipScale = 1;
+  if (flop) flopScale = -1;
+  else flopScale = 1;
+  context.scale(flipScale, flopScale);
+
+  // Draw the image
+  context.drawImage(img, -width / 2, -height / 2, width, height);
+
+  context.restore();
+}
