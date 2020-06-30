@@ -15,6 +15,7 @@
     const canvasTop = imageEditor.offsetTop;
     const ctx = imageEditor.getContext('2d');
     const selectedColor = document.getElementById('current-color');
+    const resetBtn = document.getElementById('reset-canvas');
 
     let lastX;
     let lastY;
@@ -34,6 +35,10 @@
           ? state.availColors[++state.currentColor]
           : resetColor();
       selectedColor.style.backgroundColor = nextColor;
+    });
+
+    resetBtn.addEventListener('click', () => {
+      clear();
     });
 
     // Draw Functionality
