@@ -10,7 +10,7 @@
   "author": "Patrick Obermeier",
   "license": "ISC",
   "dependencies": {
-    "electron": "^9.4.0",
+    "electron": "^13.6.6",
     "knockout": "^3.5.1"
   }
 }
